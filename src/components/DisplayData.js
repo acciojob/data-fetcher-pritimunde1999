@@ -9,14 +9,14 @@ const DisplayData = () => {
     useEffect(()=>{
         axios.get(' https://dummyjson.com/products')
         .then(res=>setData(res))
-        .catch(err=>console.log(err))
+        .catch(err=>console.log(err.message))
     },[])
 
     console.log(data)
 
   return (
     <div>
-        <h1>Data fetched from API</h1>
+        <h1>Data Fetched from API</h1>
         {
             data && (
               <pre>
