@@ -4,13 +4,35 @@ import axios from "axios";
 
 const DisplayData = () => {
     const[data,setData] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
 
     useEffect(()=>{
+        setLoading(true);
         axios.get(' https://dummyjson.com/products')
-        .then(res=>setData(res.data))
-        .catch(err=>console.log('An error occurred: within the element: [ <div#root>, 2 more... ]'))
+        .then(response=>response.data)
+        .then((res)=>{
+           setData(res);
+           setLoading(false);
+        })
+        .catch((error) => {
+          setError(error);
+          setLoading(false);
+        });
     },[])
+
+    if (loading) {
+      return <div>Loading...</div>;
+    }
+  
+    if (error) {
+      return <div>An error occurred: {error.message}</div>;
+    }
+  
+    if (!data) {
+      return <div>No data found</div>;
+    }
 
     
 
