@@ -8,11 +8,11 @@ const DisplayData = () => {
 
     useEffect(()=>{
         axios.get(' https://dummyjson.com/products')
-        .then(res=>setData(res))
-        .catch(err=>console.log(err.message))
+        .then(res=>setData(res.data))
+        .catch(err=>console.log('An error occurred: within the element: [ <div#root>, 2 more... ]'))
     },[])
 
-    console.log(data)
+    
 
   return (
     <div>
